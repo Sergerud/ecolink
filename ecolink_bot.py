@@ -27,7 +27,12 @@ async def tgarb(ctx):
 async def all(ctx):
     #fun=['$metal,$steklo,$plastik']
     #commands=(', '.join(fun))
-    await ctx.send(f"Привет! Я бот EcoLink. Я умею находить переработчика отходов из Стекла - команда $steklo, Пластика - команда $plastik, Металла - команда $metal")
+    await ctx.send(f"Привет! Я бот EcoLink. Я умею находить переработчика отходов из:\n"
+                   f"Стекла - команда $steklo,\n"
+                   f"Пластика - команда $plastik,\n"
+                   f"Металла - команда $metal,\n"
+                   f"Бумаги - команда $paper,\n"
+                   f"Строительные отходы - команда $stroi")
     #await ctx.send(commands) 
 @bot.command('metal')
 async def metal(ctx):
@@ -36,5 +41,33 @@ async def metal(ctx):
         picture = discord.File(f)
         await ctx.send(file=picture)  
         await ctx.send(f"Металл")
+@bot.command('plastik')
+async def plastik(ctx):
+      with open(f'garbage/plastik.png', 'rb') as f:
+        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+        picture = discord.File(f)
+        await ctx.send(file=picture)  
+        await ctx.send(f"Пластик")    
+@bot.command('steklo')
+async def steklo(ctx):
+      with open(f'garbage/steklo.jpg', 'rb') as f:
+        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+        picture = discord.File(f)
+        await ctx.send(file=picture)  
+        await ctx.send(f"Стекло") 
+@bot.command('paper')
+async def paper(ctx):
+      with open(f'garbage/paper.jpg', 'rb') as f:
+        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+        picture = discord.File(f)
+        await ctx.send(file=picture)  
+        await ctx.send(f"Бумага")                   
+@bot.command('stroi')
+async def stroi(ctx):
+      with open(f'garbage/stroi.jpg', 'rb') as f:
+        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+        picture = discord.File(f)
+        await ctx.send(file=picture)  
+        await ctx.send(f"Строительные отходы")                 
 
 bot.run('')    
