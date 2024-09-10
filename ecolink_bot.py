@@ -32,22 +32,40 @@ async def all(ctx):
                    f"Пластика - команда $plastik,\n"
                    f"Металла - команда $metal,\n"
                    f"Бумаги - команда $paper,\n"
-                   f"Строительные отходы - команда $stroi")
+                   f"Строительных отходов - команда $stroi")
     #await ctx.send(commands) 
 @bot.command('metal')
 async def metal(ctx):
       with open(f'garbage/metal.jpg', 'rb') as f:
-        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+         # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
         picture = discord.File(f)
         await ctx.send(file=picture)  
         await ctx.send(f"Металл")
+      with open(f'garbage/recyclers.txt', 'r', encoding='utf-8') as r:
+          #content=r.read()
+          for line in r:
+            content=line
+            if 'Металл' in content:
+               url=content[7:len(content)] 
+               break
+
+          await ctx.send(url)
+            
 @bot.command('plastik')
 async def plastik(ctx):
       with open(f'garbage/plastik.png', 'rb') as f:
         # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
         picture = discord.File(f)
         await ctx.send(file=picture)  
-        await ctx.send(f"Пластик")    
+        await ctx.send(f"Пластик")  
+      with open(f'garbage/recyclers.txt', 'r', encoding='utf-8') as r:
+        for line in r:
+            content=line
+            if 'Пластик' in content:
+               url=content[8:len(content)] 
+               break
+
+        await ctx.send(url)  
 @bot.command('steklo')
 async def steklo(ctx):
       with open(f'garbage/steklo.jpg', 'rb') as f:
@@ -55,19 +73,43 @@ async def steklo(ctx):
         picture = discord.File(f)
         await ctx.send(file=picture)  
         await ctx.send(f"Стекло") 
+      with open(f'garbage/recyclers.txt', 'r', encoding='utf-8') as r:
+         for line in r:
+            content=line
+            if 'Стекло' in content:
+                 url=content[7:len(content)] 
+                 break
+
+         await ctx.send(url)  
 @bot.command('paper')
 async def paper(ctx):
       with open(f'garbage/paper.jpg', 'rb') as f:
         # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
         picture = discord.File(f)
         await ctx.send(file=picture)  
-        await ctx.send(f"Бумага")                   
+        await ctx.send(f"Бумага") 
+      with open(f'garbage/recyclers.txt', 'r', encoding='utf-8') as r:
+         for line in r:
+            content=line
+            if 'Бумага' in content:
+                 url=content[7:len(content)] 
+                 break
+
+      await ctx.send(url)                    
 @bot.command('stroi')
 async def stroi(ctx):
       with open(f'garbage/stroi.jpg', 'rb') as f:
         # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
         picture = discord.File(f)
         await ctx.send(file=picture)  
-        await ctx.send(f"Строительные отходы")                 
+        await ctx.send(f"Строительные отходы")  
+      with open(f'garbage/recyclers.txt', 'r', encoding='utf-8') as r:
+         for line in r:
+            content=line
+            if 'Стройотходы' in content:
+                 url=content[12:len(content)] 
+                 break
+
+         await ctx.send(url)                     
 
 bot.run('')    
